@@ -4,13 +4,14 @@ from boxdetect import config
 from boxdetect.pipelines import get_boxes
 from boxdetect.pipelines import get_checkboxes
 
-file_name = 'E:/dev/vsc_workspace/python/opencv/marketingAgreementInspection/test/test3.jpg'
+file_name = 'test.jpg'
 
 cfg = config.PipelinesConfig()
 
 # important to adjust these values to match the size of boxes on your image
 cfg.width_range = (15, 25)
 cfg.height_range = (15, 25)
+px_threshold = 0.4
 
 # the more scaling factors the more accurate the results but also it takes more time to processing
 # too small scaling factor may cause false positives
@@ -37,7 +38,7 @@ plt.imshow(output_image)
 plt.show()
 
 # View Checkboxes
-checkboxes = get_checkboxes(file_name, cfg=cfg, px_threshold=0.4, plot=False, verbose=True)
+checkboxes = get_checkboxes(file_name, cfg=cfg, px_threshold=px_threshold, plot=False, verbose=True)
 #print("Output object type: ", type(checkboxes))
 for checkbox in checkboxes:
     print("Checkbox bounding rectangle (x,y,width,height): ", checkbox[0])
